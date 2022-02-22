@@ -1,0 +1,23 @@
+apiVersion: api/v1
+kind: Deployment
+metadata:
+  name: hunza-app-deployment
+  labels:
+    app: hunza-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hunza-app
+  template:
+    metadata:
+      labels:
+        app: hunza-app
+    spec:
+      nodeSelector:
+        type: backend
+      containers:
+        - name: hunza-app
+          image: hunza-app:v.01
+          ports:
+            - containerPort: 8080
